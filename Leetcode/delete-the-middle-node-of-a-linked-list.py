@@ -1,16 +1,18 @@
 # Definition for singly-linked list.
 # class ListNode:
-#     def __init__(self, x):
-#         self.val = x
-#         self.next = None
-
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
 class Solution:
-    def getIntersectionNode(self, headA: ListNode, headB: ListNode) -> Optional[ListNode]:
-        currA = headA
-        currB = headB
-        while currA!= currB:
-            currA =currA.next if currA else headB
-            currB =currB.next if currB else headA
-        return currA
-
+    def deleteMiddle(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        if head.next is None :
+            return None
+        fast = head.next.next
+        slow = head
+        while fast and fast.next:
+            slow = slow.next
+            fast = fast.next.next
+        
+        slow.next = slow.next.next
+        
         return head
