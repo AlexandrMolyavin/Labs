@@ -4,26 +4,15 @@
 #         self.val = val
 #         self.next = next
 class Solution:
-    def oddEvenList(self, head: Optional[ListNode]) -> Optional[ListNode]:
-        odd_head = ListNode(0)
-        odd = odd_head
+    def removeElements(self, head: Optional[ListNode], val: int) -> Optional[ListNode]:
+        prevHead = ListNode(None)
+        prevHead.next = head
+        current = prevHead
 
-        even_head = ListNode(0)
-        even = even_head
-
-        count = 0
-        while head:
-            if count % 2 == 0:
-                odd.next = head
-                odd = head
+        while current.next:
+            if current.next.val == val:
+                current.next = current.next.next
             else:
-                even.next = head
-                even = head
+                current = current.next
 
-            count += 1
-            head = head.next
-
-        even.next = None
-        odd.next = even_head.next
-
-        return odd_head.next
+        return prevHead.next
