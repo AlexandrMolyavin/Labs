@@ -4,15 +4,20 @@
 #         self.val = val
 #         self.next = next
 class Solution:
-    def removeElements(self, head: Optional[ListNode], val: int) -> Optional[ListNode]:
-        prevHead = ListNode(None)
-        prevHead.next = head
-        current = prevHead
+    def mergeNodes(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        if head.next is None:
+            return head
+        curr = head.next
 
-        while current.next:
-            if current.next.val == val:
-                current.next = current.next.next
-            else:
-                current = current.next
+        while curr:
+            running = curr
+            summ = 0
+            while running.val:
+                summ += running.val
+                running = running.next
 
-        return prevHead.next
+            curr.val = summ
+            curr.next = running.next
+            curr = running.next
+
+        return head.next
