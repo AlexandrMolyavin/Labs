@@ -1,3 +1,11 @@
+def msort(nums):
+    if len(nums) == 1:
+        return nums
+    mid = len(nums) // 2
+    left = msort(nums[:mid])
+    right = msort(nums[mid:])
+    return merge_two_lst(left, right)
+
 def merge_two_lst(left, right):
     c = []
     i = j = 0
